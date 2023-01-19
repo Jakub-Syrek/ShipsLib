@@ -1,0 +1,12 @@
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\bin\Debug\net6.0\ShipsLib.deps.json
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\bin\Debug\net6.0\ShipsLib.dll
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\bin\Debug\net6.0\ShipsLib.pdb
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\ShipsLib.csproj.AssemblyReference.cache
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\ShipsLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\ShipsLib.AssemblyInfoInputs.cache
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\ShipsLib.AssemblyInfo.cs
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\ShipsLib.csproj.CoreCompileInputs.cache
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\ShipsLib.dll
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\refint\ShipsLib.dll
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\ShipsLib.pdb
+C:\Users\jaqbs\source\repos\ShipsLib\ShipsLib\obj\Debug\net6.0\ref\ShipsLib.dll

@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ConsoleShips/1.0.0": {
+        "dependencies": {
+          "ShipsLib": "1.0.0"
+        },
+        "runtime": {
+          "ConsoleShips.dll": {}
+        }
+      },
+      "ShipsLib/1.0.0": {
+        "runtime": {
+          "ShipsLib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConsoleShips/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShipsLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

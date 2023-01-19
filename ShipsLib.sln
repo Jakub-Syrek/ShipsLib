@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipsLib", "ShipsLib\ShipsLib.csproj", "{D009A882-9E57-4DA2-BC51-AF97D18E78DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleShips", "ConsoleShips\ConsoleShips.csproj", "{71B8FC16-008C-4EFE-970B-C555A409E8C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFShips", "WPFShips\WPFShips.csproj", "{31F7B3B8-2A63-445B-81C8-0D84C870C0BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D009A882-9E57-4DA2-BC51-AF97D18E78DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D009A882-9E57-4DA2-BC51-AF97D18E78DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D009A882-9E57-4DA2-BC51-AF97D18E78DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D009A882-9E57-4DA2-BC51-AF97D18E78DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B8FC16-008C-4EFE-970B-C555A409E8C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B8FC16-008C-4EFE-970B-C555A409E8C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B8FC16-008C-4EFE-970B-C555A409E8C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B8FC16-008C-4EFE-970B-C555A409E8C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31F7B3B8-2A63-445B-81C8-0D84C870C0BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31F7B3B8-2A63-445B-81C8-0D84C870C0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F7B3B8-2A63-445B-81C8-0D84C870C0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31F7B3B8-2A63-445B-81C8-0D84C870C0BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81E6F69A-D173-4CAE-AD70-6A0A83E923BF}
+	EndGlobalSection
+EndGlobal
