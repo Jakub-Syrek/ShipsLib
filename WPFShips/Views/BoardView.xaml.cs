@@ -117,11 +117,11 @@ namespace WPFShips.Views
                 {
                     for (int i = xFrom; i < xTo; i++)
                     {
-                        var uiElementCollection = MainGrid.Children;
+                        var uiElementCollection = MainGrid1.Children;
                         foreach (UIElement uiElement in uiElementCollection)
                         {
                             var butt = (CustomButton)uiElement;
-                            if (butt.X == i && butt.Y == yTo)
+                            if (butt.X == i && butt.Y == yTo && butt.Name == "placing")
                             {
                                 butt.Background = Brushes.Blue;
                                 var tile = this.newBoard.GetTile(new TileDimension((BoardVertical)i, (BoardHorizontal)yTo));
@@ -148,7 +148,7 @@ namespace WPFShips.Views
                 {
                     for (int i = yFrom; i < yTo; i++)
                     {
-                        var uiElementCollection = MainGrid.Children;
+                        var uiElementCollection = MainGrid1.Children;
                         foreach (UIElement uiElement in uiElementCollection)
                         {
                             var butt = (CustomButton)uiElement;
@@ -298,7 +298,7 @@ namespace WPFShips.Views
                     button.Content = $"{nameVerticalEnum}{nameHorizontalEnum}";
                     button.HorizontalAlignment = HorizontalAlignment.Stretch;
                     button.TileValue = TileValue.Empty;
-                    button.Name = $"{nameVerticalEnum}{nameHorizontalEnum}";
+                    button.Name = $"placing";
 
                     button.X = i;
                     button.Y = j;
@@ -307,7 +307,7 @@ namespace WPFShips.Views
 
                     Grid.SetColumn(button, j);
                     Grid.SetRow(button, i);
-                    MainGrid.Children.Add(button);
+                    MainGrid1.Children.Add(button);
 
                     count++;
                 }

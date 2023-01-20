@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using ShipsLib;
 
 namespace WPFShips.Views
@@ -276,39 +277,149 @@ namespace WPFShips.Views
             var button = sender as CustomButton;
             var x = button.X;
             var y = button.Y;
-
-          
-                var uiElementCollection = MainGrid.Children;
-                foreach (UIElement uiElement in uiElementCollection)
+            
+            var uiElementCollection = MainGrid.Children;
+            foreach (UIElement uiElement in uiElementCollection)
+            {
+                var butt = (CustomButton)uiElement;
+                if (butt.X == x && butt.Y == y && butt.Name == "shooting")
                 {
-                    var butt = (CustomButton)uiElement;
-                    if (butt.X == x && butt.Y == y)
+                    if (butt.HiddenTileValue == TileValue.Hit || butt.HiddenTileValue == TileValue.Miss)
                     {
-                        if (butt.HiddenTileValue == TileValue.Hit || butt.HiddenTileValue == TileValue.Miss)
-                        {
-                            return;
-                        }
-                        if (butt.HiddenTileValue != TileValue.Hit && butt.HiddenTileValue != TileValue.Miss &&
-                            butt.HiddenTileValue != TileValue.Empty)
-                        {
-                            butt.TileValue = TileValue.Hit;
-                            butt.Background = Brushes.Red;
-                            butt.Name = butt.HiddenTileValue.ToString();
-                            //butt.Visibility = Visibility.Collapsed;
-                            //butt.IsEnabled = false;
-                        }
-                        if (butt.HiddenTileValue == TileValue.Empty )
-                        {
-                            butt.TileValue = TileValue.Miss;
-                            butt.Background = Brushes.Gray;
-                            butt.Name = butt.HiddenTileValue.ToString();
-                            //butt.Visibility = Visibility.Collapsed;
-                            //butt.IsEnabled = false;
+                        return;
+                    }
+                    if (butt.HiddenTileValue != TileValue.Hit && butt.HiddenTileValue != TileValue.Miss &&
+                        butt.HiddenTileValue != TileValue.Empty)
+                    {
+                        butt.TileValue = TileValue.Hit;
+                        butt.Background = Brushes.Red;
+                        butt.Name = butt.HiddenTileValue.ToString();
+                        //butt.Visibility = Visibility.Collapsed;
+                        //butt.IsEnabled = false;
+                    }
+                    if (butt.HiddenTileValue == TileValue.Empty )
+                    {
+                        butt.TileValue = TileValue.Miss;
+                        butt.Background = Brushes.Gray;
+                        butt.Name = butt.HiddenTileValue.ToString();
+                        //butt.Visibility = Visibility.Collapsed;
+                        //butt.IsEnabled = false;
 
-                        }
                     }
                 }
-           
+            }
+
+            foreach (UIElement uiElement in uiElementCollection)
+            {
+                var butt = (CustomButton)uiElement;
+                if (butt.X == x && butt.Y == y && butt.Name == "shooting")
+                {
+                    if (butt.HiddenTileValue == TileValue.Hit || butt.HiddenTileValue == TileValue.Miss)
+                    {
+                        return;
+                    }
+                    if (butt.HiddenTileValue != TileValue.Hit && butt.HiddenTileValue != TileValue.Miss &&
+                        butt.HiddenTileValue != TileValue.Empty)
+                    {
+                        butt.TileValue = TileValue.Hit;
+                        butt.Background = Brushes.Red;
+                        butt.Name = butt.HiddenTileValue.ToString();
+                        //butt.Visibility = Visibility.Collapsed;
+                        //butt.IsEnabled = false;
+                    }
+                    if (butt.HiddenTileValue == TileValue.Empty)
+                    {
+                        butt.TileValue = TileValue.Miss;
+                        butt.Background = Brushes.Gray;
+                        butt.Name = butt.HiddenTileValue.ToString();
+                        //butt.Visibility = Visibility.Collapsed;
+                        //butt.IsEnabled = false;
+
+                    }
+                }
+            }
+
+            int nextShotX = -1;
+            int nextShotY = -1;
+            BoardView boarView = null;
+            while (nextShotY == -1)
+            {
+                var random = new Random();
+                var localX = random.Next(0, 9);
+                var localY = random.Next(0, 9);
+
+                var mainWindow = (MainWindow)((Grid)((StackPanel)((StackPanel)((ShootingView)((Grid)((CustomButton) sender).Parent).Parent).Parent).Parent).Parent).Parent;
+                var children = LogicalTreeHelper.GetChildren(mainWindow);
+
+                
+                foreach (var child in children)
+                {
+                    boarView = (BoardView)((((StackPanel)((((StackPanel)((((Grid)child).Children)[0])).Children)[1])).Children)[1]);
+                    break;
+                }
+                foreach (UIElement uiElement in boarView.MainGrid1.Children)
+                {
+                    try
+                    {
+                        var butt = (CustomButton)uiElement;
+                        if (butt.X == localX && butt.Y == localY && butt.Name == "placing")
+                        {
+                            if (butt.TileValue != TileValue.Hit && butt.TileValue != TileValue.Miss)
+                            {
+                                if (butt.Background != Brushes.Blue)
+                                {
+                                    butt.TileValue = TileValue.Miss;
+                                    butt.Content = TileValue.Miss.ToString();
+                                    butt.Background = Brushes.Gray;
+                                    return;
+                                }
+                                if (butt.Background == Brushes.Blue)
+                                {
+                                    butt.TileValue = TileValue.Hit;
+                                    butt.Content = TileValue.Hit.ToString();
+                                    butt.Background = Brushes.Black;
+                                    return;
+                                }
+
+                                nextShotX = localX;
+                                nextShotY = localY;
+
+
+
+
+                                break;
+                            }
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+
+            }
+            foreach (UIElement uiElement in boarView.MainGrid1.Children)
+            {
+                try
+                {
+                    var butt = (CustomButton)uiElement;
+                    if (butt.X == nextShotX && butt.Y == nextShotY && butt.TileValue == TileValue.Empty)
+                    {
+                        butt.TileValue = TileValue.Miss;
+                        butt.Content = "Dupa";
+                        return;
+                    }
+                    if (butt.X == nextShotX && butt.Y == nextShotY && butt.TileValue != TileValue.Empty)
+                    {
+                        butt.TileValue = TileValue.Hit;
+                        button.Content = TileValue.Hit.ToString();
+                        return;
+                    }
+                }
+                catch
+                {
+                }
+                
+            }
 
         }
         public ShootingView()
@@ -331,12 +442,13 @@ namespace WPFShips.Views
                     var nameHorizontalEnum = j;
 
                     var button = new CustomButton();
-                    button.Content = $"{nameVerticalEnum}{nameHorizontalEnum}";
+                    
                     button.HorizontalAlignment = HorizontalAlignment.Stretch;
                     //button.TileValue = TileValue.Empty;
                     button.TileValue = newBoard.GetTile(new TileDimension((BoardVertical)i, (BoardHorizontal)j))!.Value; 
                     button.HiddenTileValue = newBoard.GetTile(new TileDimension((BoardVertical) i, (BoardHorizontal) j))!.Value;
-                    button.Name = $"{nameVerticalEnum}{nameHorizontalEnum}{button.HiddenTileValue}";
+                    button.Content = $"{nameVerticalEnum}{nameHorizontalEnum}";
+                    button.Name = $"shooting";
 
                     button.X = i;
                     button.Y = j;

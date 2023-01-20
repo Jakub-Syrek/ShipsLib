@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WPFShips.Views"
              mc:Ignorable="d" 
              Height="300" Width="300">
-    <Grid Name="MainGrid">
+    <Grid Name="MainGrid1">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" Name="A"/>
             <RowDefinition Height="*" Name="B"/>

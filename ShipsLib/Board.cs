@@ -35,7 +35,7 @@ namespace ShipsLib
                 {
                     int x1 = random.Next(0, 9);
                     int y1 = random.Next(0, 9);
-                    var tilesInRange2 = GetNeighboursRange(new TileDimension((BoardVertical)x1, (BoardHorizontal)y1));
+                    var tilesInRange2 = GetNeighbours(new TileDimension((BoardVertical)x1, (BoardHorizontal)y1));
                     if (tilesInRange2.Any(x => x.IsOccupied) == false)
                     {
                         currentX1 = x1;
@@ -47,7 +47,7 @@ namespace ShipsLib
                 }
                 else
                 {
-                    int vertical = random.Next(0, 3);
+                    int vertical = random.Next(0, 2);
 
                     var tilesOnTheWay = new List<Tile>();
                     //vertical
@@ -68,7 +68,7 @@ namespace ShipsLib
                             x2 = x1 - shipLength;
                         }
 
-                        for (int x = (x1 < x2 ? x1 : x2); x <= (x2 > x1 ? x2 : x1); x++)
+                        for (int x = Math.Min(x1, x2); x <= Math.Max(x1, x2); x++)
                         {
                             var tileInRange2 = GetNeighbours(new TileDimension((BoardVertical)x, (BoardHorizontal)y1));
                             tilesOnTheWay.AddRange(tileInRange2);
@@ -101,7 +101,7 @@ namespace ShipsLib
                             y2 -= shipLength;
                         }
 
-                        for (int y = (y1 < y2 ? y1 : y2); y < (y2 > y1 ? y2 : y1); y++)
+                        for (int y = Math.Min(y1, y2); y <= Math.Max(y1, y2); y++)
                         {
                             var tileInRange2 = GetNeighboursRange(new TileDimension((BoardVertical)x1, (BoardHorizontal)y));
                             tilesOnTheWay.AddRange(tileInRange2);
@@ -136,20 +136,29 @@ namespace ShipsLib
             var y1 = (int)dimensions.Item1.Y;
             var x2 = (int)dimensions.Item2.X;
             var y2 = (int)dimensions.Item2.Y;
+            
+            if (x1 == x2 && y1 == y2)
+            {
+                SetTile(new TileDimension((BoardVertical)x1, (BoardHorizontal)y1), value);
+                return;
+            }
 
             if (x1 == x2)
             {
-                for (int y = (y1 < y2 ? y1 : y2); y < (y2 > y1 ? y2 : y1); y++)
+                
+                for (int y = Math.Min(y1, y2); y < Math.Max(y1, y2); y++)
                 {
-                    SetTile(new TileDimension((BoardVertical) x1, (BoardHorizontal) y), value);
+                    SetTile(new TileDimension((BoardVertical)x1, (BoardHorizontal)y), value);
                 }
+                
             }
             else
             {
-                for (int x = (x1 < x2 ? x1 : x2); x <= (x2 > x1 ? x2 : x1); x++)
+                for (int x = Math.Min(x1, x2); x < Math.Max(x1, x2); x++)
                 {
                     SetTile(new TileDimension((BoardVertical)x, (BoardHorizontal)y1), value);
                 }
+                
             }
         }
         public void PopulateRandomly()
@@ -167,18 +176,36 @@ namespace ShipsLib
                     {
                         case TileValue.Battleship:
                             (TileDimension, TileDimension) dimens = GenerateShipPlacement(4);
+
+                            var x1 = (int)dimens.Item1.X;
+                            var y1 = (int)dimens.Item1.Y;
+                            var x2 = (int)dimens.Item2.X;
+                            var y2 = (int)dimens.Item2.Y;
+
                             PlaceShip(dimens, currentShipType);
                             break;
                         case TileValue.Carrier:
                             dimens = GenerateShipPlacement(3);
+                            x1 = (int)dimens.Item1.X;
+                            y1 = (int)dimens.Item1.Y;
+                            x2 = (int)dimens.Item2.X;
+                            y2 = (int)dimens.Item2.Y;
                             PlaceShip(dimens, currentShipType);
                             break;
                         case TileValue.Cruiser:
                             dimens = GenerateShipPlacement(2);
+                            x1 = (int)dimens.Item1.X;
+                            y1 = (int)dimens.Item1.Y;
+                            x2 = (int)dimens.Item2.X;
+                            y2 = (int)dimens.Item2.Y;
                             PlaceShip(dimens, currentShipType);
                             break;
                         case TileValue.Destroyer:
                             dimens = GenerateShipPlacement(1);
+                            x1 = (int)dimens.Item1.X;
+                            y1 = (int)dimens.Item1.Y;
+                            x2 = (int)dimens.Item2.X;
+                            y2 = (int)dimens.Item2.Y;
                             PlaceShip(dimens, currentShipType);
                             break;
                     }
